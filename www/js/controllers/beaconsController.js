@@ -18,7 +18,7 @@ function getRandomBetween(min,max){
   // beaconDistance = 10;
   //////NOT used/////////
   
-  // $scope.beaconsList = [{proximity:"..."}];
+  $scope.beaconsList = [{proximity:"..."}];
 
   beaconHot = 5.0;
   beaconWarm = 10.0;
@@ -71,9 +71,9 @@ function getRandomBetween(min,max){
     {
       // $scope.beacons = beaconInfo['beacons'];
       if(beaconInfo['beacons'].length>0){
-        beaconsList = beaconInfo['beacons'];
+        $scope.beaconsList = beaconInfo['beacons'];
       }else{
-        beaconsList = [];
+        $scope.beaconsList = [];
       }
     };
 
@@ -88,84 +88,84 @@ function getRandomBetween(min,max){
       onRange,
       onError);
 
-    $interval(function() {
+    // $interval(function() {
 
-      ++scanTimes;
+    //   ++scanTimes;
 
-      var filteredBeaconsList = filterByMacAddress(beaconsList); 
-      var maxDiference = 2; //diferencia
+    //   var filteredBeaconsList = filterByMacAddress(beaconsList); 
+    //   var maxDiference = 2; //diferencia
 
-      if(filteredBeaconsList.length > 0){
-        //make it posible//
-        formatedDistance = filteredBeaconsList[0].distance.toFixed(2);
+    //   if(filteredBeaconsList.length > 0){
+    //     //make it posible//
+    //     formatedDistance = filteredBeaconsList[0].distance.toFixed(2);
 
-        $scope.beacons ="Distancia"+formatedDistance +"\n Contador: "+closeCounter;
+    //     $scope.beacons ="Distancia"+formatedDistance +"\n Contador: "+closeCounter;
 
-        if (distanceCache == null) {
-          distanceCache = formatedDistance;
-        }
+    //     if (distanceCache == null) {
+    //       distanceCache = formatedDistance;
+    //     }
 
-        if (distanceCache != formatedDistance){
-          if (Math.abs(formatedDistance - distanceCache)<maxDiference) {
-            $scope.closestBeaconInfo = formatedDistance+" metros";
-          }else{
-            filteredBeaconsList[0].distance = distanceCache;
-            $scope.closestBeaconInfo = distanceCache+" metros";
-          }
-          distanceCache = formatedDistance;
-        }
-
-
-
-        if (filteredBeaconsList[0].distance<=beaconHot) {
-          filteredBeaconsList[0].temperature = 'Caliente';
-          $scope.actualGif = "img/assets/gifs/caliente.gif";
-          $scope.gifPosition = "position-caliente";
-          if (filteredBeaconsList[0].distance<=1) {
-            closeCounter++;
-            if (closeCounter>1) {
-              $scope.openModal(true);
-            }
-          }else{
-              closeCounter = 0;
-          }
-
-        }else if(filteredBeaconsList[0].distance<=beaconWarm){
-          filteredBeaconsList[0].temperature = 'Tibio';
-          $scope.actualGif = "img/assets/gifs/tibio.gif";
-          $scope.gifPosition = "position-tibio";
-          closeCounter = 0;
-        }else if(filteredBeaconsList[0].distance<=beaconArround){
-          filteredBeaconsList[0].temperature = 'Frio';
-          $scope.actualGif = "img/assets/gifs/frio.gif";
-          $scope.gifPosition = "position-frio";       
-          closeCounter = 0;
-        }
+    //     if (distanceCache != formatedDistance){
+    //       if (Math.abs(formatedDistance - distanceCache)<maxDiference) {
+    //         $scope.closestBeaconInfo = formatedDistance+" metros";
+    //       }else{
+    //         filteredBeaconsList[0].distance = distanceCache;
+    //         $scope.closestBeaconInfo = distanceCache+" metros";
+    //       }
+    //       distanceCache = formatedDistance;
+    //     }
 
 
-        // $scope.macAddress = filteredBeaconsList[0].macAddress; 
 
-      }else{
+    //     if (filteredBeaconsList[0].distance<=beaconHot) {
+    //       filteredBeaconsList[0].temperature = 'Caliente';
+    //       $scope.actualGif = "img/assets/gifs/caliente.gif";
+    //       $scope.gifPosition = "position-caliente";
+    //       if (filteredBeaconsList[0].distance<=1) {
+    //         closeCounter++;
+    //         if (closeCounter>1) {
+    //           $scope.openModal(true);
+    //         }
+    //       }else{
+    //           closeCounter = 0;
+    //       }
 
-          closeCounter = 0;
-          $scope.actualGif = null;
-          $scope.gifPosition = 'position-none';
+    //     }else if(filteredBeaconsList[0].distance<=beaconWarm){
+    //       filteredBeaconsList[0].temperature = 'Tibio';
+    //       $scope.actualGif = "img/assets/gifs/tibio.gif";
+    //       $scope.gifPosition = "position-tibio";
+    //       closeCounter = 0;
+    //     }else if(filteredBeaconsList[0].distance<=beaconArround){
+    //       filteredBeaconsList[0].temperature = 'Frio';
+    //       $scope.actualGif = "img/assets/gifs/frio.gif";
+    //       $scope.gifPosition = "position-frio";       
+    //       closeCounter = 0;
+    //     }
 
-          if ($scope.closestBeaconInfo == ".") {
-            $scope.closestBeaconInfo = "..";
-          }else if ($scope.closestBeaconInfo == "..") {
-            $scope.closestBeaconInfo = "..."
-          }else if($scope.closestBeaconInfo == "..."){
-            $scope.closestBeaconInfo = ".";
-          }else{
-            $scope.closestBeaconInfo = "...";
-          }
-      }
 
-      // $scope.beaconsList = filteredBeaconsList;
-      // $scope.closestBeaconInfo += " " +scanTimes;
+    //     // $scope.macAddress = filteredBeaconsList[0].macAddress; 
+
+    //   }else{
+
+    //       closeCounter = 0;
+    //       $scope.actualGif = null;
+    //       $scope.gifPosition = 'position-none';
+
+    //       if ($scope.closestBeaconInfo == ".") {
+    //         $scope.closestBeaconInfo = "..";
+    //       }else if ($scope.closestBeaconInfo == "..") {
+    //         $scope.closestBeaconInfo = "..."
+    //       }else if($scope.closestBeaconInfo == "..."){
+    //         $scope.closestBeaconInfo = ".";
+    //       }else{
+    //         $scope.closestBeaconInfo = "...";
+    //       }
+    //   }
+
+    //   $scope.beaconsList = filteredBeaconsList;
+    //   // $scope.closestBeaconInfo += " " +scanTimes;
      
-    }, 1000);//1500
+    // }, 1000);//1500
     
     function filterByMacAddress(pbeaconsList){
       var filteredList = [];
