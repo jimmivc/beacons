@@ -1,0 +1,40 @@
+<ion-view view-title="Blank">
+    <ion-header-bar class="bar-dark">
+            <h1 class="title">Beacons</h1>
+             <button class="button button-icon" ng-click="scanBeacons()">
+                <i class="icon ion-radio-waves"></i>
+            </button>
+      </ion-header-bar>
+  <ion-content class="padding">
+
+<div class="list card" ng-repeat="beacon in beaconsList">
+       <div class="item item-divider">
+          <span>Beacon</span>
+        </div>
+
+        <div class="item item-body">
+                
+                <p>
+                    Beacon Id: <span ng-bind="beacon.major"></span>
+                </p>
+                <p>
+                    Beacon Proximity: <span ng-bind="beacon.proximity"></span>
+                </p>
+                <p>
+                    Beacon Tip: <span ng-bind="beacon.distance"></span>
+                </p>
+                <p>
+                    Beacon MAC Address: <span ng-bind="beacon.macAddress"></span>
+                </p>
+
+                <p>
+                    Beacon Distance: <span ng-bind="beacon.temperature"></span>
+                </p>
+
+                <p>
+                    alldata: <span ng-bind="beacon"></span>
+                </p>
+                
+        </div>
+    </ion-content>
+</ion-view>
