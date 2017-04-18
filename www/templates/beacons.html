@@ -1,6 +1,6 @@
 <ion-view view-title="Blank">
     <ion-header-bar class="bar-dark">
-            <h1 class="title">Beacons</h1>
+            <h1 class="title">Beacons scanned {{scanTimes}}</h1>
              <button class="button button-icon" ng-click="scanBeacons()">
                 <i class="icon ion-radio-waves"></i>
             </button>
@@ -9,7 +9,7 @@
 
 <div class="list card" ng-repeat="beacon in beaconsList">
        <div class="item item-divider">
-          <span>Beacon</span>
+          <span>Beacons</span>
         </div>
 
         <div class="item item-body">

@@ -1,9 +1,4 @@
 app.controller('beaconsController',function($scope, $ionicModal, localStorageService,$interval,$timeout){
-  
-
-var popupTimes = 0;
-var popupTimeout = 30000;
-var popupHot = false;
  
 
 
@@ -24,7 +19,7 @@ function getRandomBetween(min,max){
   beaconWarm = 10.0;
   beaconArround = 20.0;
   searchInterval = 1000;//busca beacons cada x tiempo
-  scanTimes = 0;
+  $scope.scanTimes = 0;
 
   beaconsList = [];
   distanceCache = null;
@@ -70,6 +65,8 @@ function getRandomBetween(min,max){
     function displayBeconInfo(beaconInfo)
     {
       // $scope.beaconsList = beaconInfo['beacons'];
+      $scope.displaytimes = ++$scope.scanTimes;
+
       if(beaconInfo['beacons'].length>0){
         $scope.beaconsList = beaconInfo['beacons'];
       }else{
@@ -79,7 +76,7 @@ function getRandomBetween(min,max){
 
     // Request authorisation.
     estimote.beacons.requestAlwaysAuthorization();
-    // alert('starting scan');
+    alert('starting scan');
 
     // Start ranging.
     
