@@ -69,7 +69,12 @@ function getRandomBetween(min,max){
 
     function displayBeconInfo(beaconInfo)
     {
-      $scope.beacons = beaconInfo['beacons'];
+      $scope.beaconsList = beaconInfo['beacons'];
+      // if(beaconInfo['beacons'].length>0){
+      //   $scope.beaconsList = beaconInfo['beacons'];
+      // }else{
+      //   $scope.beaconsList = [];
+      // }
     };
 
     // Request authorisation.
