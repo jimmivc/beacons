@@ -72,6 +72,8 @@ function getRandomBetween(min,max){
       }else{
         $scope.beaconsList = [];
       }
+
+      $scope.$apply();
     };
 
     // Request authorisation.
